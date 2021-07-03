@@ -2,22 +2,60 @@
 
 exports[`Home page matches snapshot 1`] = `
 <DocumentFragment>
-  <div
-    class="jsx-1276654382 container"
-  >
+  <div>
     <main
-      class="jsx-1276654382"
+      class="main"
     >
       <h1
-        class="jsx-1276654382 title"
+        class="title"
       >
-        URL Word Counter
+        Count Those Words
       </h1>
-      <button
-        class="jsx-1276654382"
+      <p
+        class="description"
       >
-        Test Button
-      </button>
+        Give me a URL, and I will give you the word count
+      </p>
+      <form>
+        <label
+          for="name"
+        >
+          URL
+        </label>
+        <input
+          autocomplete="name"
+          id="name"
+          name="name"
+          required=""
+          type="text"
+        />
+        <button
+          type="submit"
+        >
+          Count
+        </button>
+      </form>
+      <div>
+        <table
+          class="table table-sm table-striped table-bordered table-hover"
+        >
+          <thead>
+            <tr>
+              <th
+                class="colName"
+              >
+                Word
+              </th>
+              <th
+                class="colState"
+              >
+                Number of Occurance
+              </th>
+            </tr>
+          </thead>
+          <tbody />
+        </table>
+      </div>
     </main>
   </div>
 </DocumentFragment>
