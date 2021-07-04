@@ -1,57 +1,56 @@
-import axios from "axios";
-import { NextApiRequest, NextApiResponse } from "next";
-import { Transform } from "stream";
-const cache: Map<string, number> = new Map();
+import axios from 'axios'
+import { NextApiRequest, NextApiResponse } from 'next'
+import { Transform } from 'stream'
+const cache: Map<string, number> = new Map()
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
-) {
+): Promise<void> {
   try {
     axios({
-      method: "get",
+      method: 'get',
       url: req.body.url,
-      responseType: "stream",
+      responseType: 'stream',
     }).then(function (response) {
-      response.data.pipe(inoutStream);
-    });
+      response.data.pipe(inoutStream)
+    })
     const inoutStream = new Transform({
       transform(chunk: Buffer, encoding, callback) {
-        this.push(chunk);
-        callback();
+        this.push(chunk)
+        callback()
       },
     })
-      .on("data", (chunk: Buffer) => {
-        const word = chunk.toString().split(/(\b[\w]{2,}|a\b)/);
+      .on('data', (chunk: Buffer) => {
+        const word = chunk.toString().split(/(\b[\w]{2,}|a\b)/)
         if (!word) {
-          return;
+          return
         }
-        
+
         word.forEach((w) => {
           if (/\b[a-zA-Z]{2,}|a\b/.test(w)) {
             if (!cache.has(w)) {
-              cache.set(w, 1);
+              cache.set(w, 1)
             } else {
-              let wd = cache.get(w);
+              let wd = cache.get(w)
               if (wd) {
-                wd++;
-                cache.delete(w);
-                cache.set(w, wd);
+                wd++
+                cache.delete(w)
+                cache.set(w, wd)
               }
             }
           }
-        });
+        })
       })
-      .on("finish", () => {
-        let arr: any = [];
-        cache.forEach((value, key, map) => {
-          arr.push([key, value]);
-        });
-        res.status(200).end(JSON.stringify(arr));
-        cache.clear();
-      });
+      .on('finish', () => {
+        const arr: any = []
+        cache.forEach((value, key) => {
+          arr.push([key, value])
+        })
+        res.status(200).end(JSON.stringify(arr))
+        cache.clear()
+      })
   } catch (err) {
-    res.status(500);
-    console.log(err);
+    res.status(500)
   }
 }

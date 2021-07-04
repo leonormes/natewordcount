@@ -1,10 +1,10 @@
-import axios from "axios"
+import axios, { AxiosResponse } from "axios"
 
-export function URLInput(props: any) {
-  const {setWords}=props
+export function URLInput(props: { setWords: any; children: any }): JSX.Element {
+  const { setWords } = props
   const countWords = async (event: any) => {
     event.preventDefault()
-    let res;
+    let res: AxiosResponse<any>;
 
     try {
       res = await axios({
@@ -17,6 +17,7 @@ export function URLInput(props: any) {
       setWords([res.data])
 
     } catch (error) {
+      /* eslint-disable no-console */
       console.log(error)
     }
 

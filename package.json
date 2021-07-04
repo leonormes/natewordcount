@@ -9,7 +9,7 @@
     "start": "next start",
     "type-check": "tsc --pretty --noEmit",
     "format": "prettier --write .",
-    "lint": "eslint . --ext ts --ext tsx --ext js",
+    "lint": "eslint . --ext ts --ext tsx --ext js --fix",
     "test": "jest",
     "test:watch": "jest --watch",
     "test-all": "npm lint && npm type-check && npm test"
@@ -27,6 +27,7 @@
     ]
   },
   "dependencies": {
+    "@babel/core": "^7.14.6",
     "axios": "^0.21.1",
     "next": "latest",
     "react": "^17.0.2",
@@ -42,6 +43,7 @@
     "@typescript-eslint/parser": "^4.28.1",
     "babel-jest": "^27.0.6",
     "eslint": "^7.30.0",
+    "eslint-config-next": "^11.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-react": "^7.24.0",
     "husky": "^7.0.0",

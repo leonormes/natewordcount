@@ -6,14 +6,13 @@ import { URLInput } from '../components/URLInput'
 
 const title = "Count Those Words"
 
-export default function Home() {
+export default function Home(): JSX.Element {
   const [words, setWords] = useState([[]])
   return (
     <div>
       <Head>
         <title>{title}</title>
         <meta name="description" content="Counted for you" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>

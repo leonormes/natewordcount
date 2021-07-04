@@ -2,9 +2,9 @@ import Table from 'react-bootstrap/Table'
 
 import classes from '../styles/WordTable.module.css'
 
-export default function WordTable(props:any) {
+export default function WordTable(props: { words: any[][] }): JSX.Element {
     return <div >
-        <Table striped bordered hover size="sm">
+        <Table striped bordered size="sm">
             <thead>
                 <tr>
                     <th className={classes.colName}>Word</th>
@@ -13,12 +13,16 @@ export default function WordTable(props:any) {
             </thead>
             <tbody>
                 {
-                    props.words[0].map((word:any) => (
-                        <tr key={word[0]}>
-                            <td className={classes.colName}>{word[0]}</td>
-                            <td className={classes.colState}>{word[1]}</td>
-                        </tr>
-                    ))
+                    props.words[0].map((word: any) => {
+                        if (word[1] > 5) {
+                            return (
+                                <tr key={word[0]}>
+                                    <td className={classes.colName}>{word[0]}</td>
+                                    <td className={classes.colState}>{word[1]}</td>
+                                </tr>
+                            )
+                        }
+                    })
                 }
             </tbody>
         </Table>

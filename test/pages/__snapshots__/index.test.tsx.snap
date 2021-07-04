@@ -37,7 +37,7 @@ exports[`Home page matches snapshot 1`] = `
       </form>
       <div>
         <table
-          class="table table-sm table-striped table-bordered table-hover"
+          class="table table-sm table-striped table-bordered"
         >
           <thead>
             <tr>
