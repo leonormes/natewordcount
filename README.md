@@ -8,4 +8,8 @@ https://www.bbc.co.uk/
 Though I noticed that if you remove the https the fetch doesn't work. Would need a change to axios settings. 
 You can build your container with 
 
-`docker build . -t counter-app and run it with docker run -p 3000:3000 counter-app`
+`docker build . -t counter-app`
+
+and run it with 
+
+`docker run -p 3000:3000 counter-app`
