@@ -13,3 +13,7 @@ You can build your container with
 and run it with 
 
 `docker run -p 3000:3000 counter-app`
+
+Then it is 
+
+`http://localhost:3000/`
